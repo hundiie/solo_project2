@@ -6,6 +6,9 @@ TagManager:
   tags:
   - OK
   - Monster
+  - Tile
+  - Tower
+  - UI
   layers:
   - Default
   - TransparentFX

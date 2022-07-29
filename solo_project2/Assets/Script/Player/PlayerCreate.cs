@@ -4,29 +4,75 @@ using UnityEngine;
 
 public class PlayerCreate : MonoBehaviour
 {
-    private Vector3 CameraCenter;
+    public GameObject HitObject;
+    private GameObject SaveObject;
+    public GameObject UI;
 
-    void Start()
+    [Header("TOWER")]
+    [SerializeField]private GameObject[] TOWER = new GameObject[0];
+
+    private bool Key_F;
+
+    private void Start()
     {
-        CameraCenter = new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2);
+        Key_F = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        CAMERASENTER();
+        CreateInput();
     }
-
-
-    void CAMERASENTER()
+    
+    void CreateInput()
     {
-        Ray ray = Camera.main.ScreenPointToRay(CameraCenter);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if (HitObject.GetComponent<TileManager>().build_Place)
         {
-            Debug.Log($" hit point : {hit.point}");
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                Key_F = true;
+                UI.GetComponent<UIManager>()._TOWER_UI = true;
+                SaveObject = HitObject;
+            }
         }
 
-        Debug.DrawRay(transform.position, transform.forward * 100f, Color.red);
+        if (Key_F)
+        {
+            TowerCreate();
+        }
     }
+
+    void TowerCreate()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            UI.GetComponent<UIManager>()._TOWER_UI = false;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Instantiate(TOWER[0], SaveObject.transform.position, SaveObject.transform.rotation);
+            UI.GetComponent<UIManager>()._TOWER_UI = false;
+            HitObject.GetComponent<TileManager>().build_Place = false;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Instantiate(TOWER[1], SaveObject.transform.position, SaveObject.transform.rotation);
+            UI.GetComponent<UIManager>()._TOWER_UI = false;
+            HitObject.GetComponent<TileManager>().build_Place = false;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Instantiate(TOWER[2], SaveObject.transform.position, SaveObject.transform.rotation);
+            UI.GetComponent<UIManager>()._TOWER_UI = false;
+            HitObject.GetComponent<TileManager>().build_Place = false;
+        }
+    }
+
+    void SellCreate()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            UI.GetComponent<UIManager>()._SELL_UI = false;
+        }
+    }
+
 }

@@ -6,12 +6,4 @@ public class MapMake : MonoBehaviour
 {
     public GameObject[] MapTile = new GameObject[0];
 
-    private void Start()
-    {
-        
-    }
-    void Update()
-    {
-        
-    }
 }

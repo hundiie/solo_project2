@@ -18,7 +18,6 @@ public class SWORD : MonoBehaviour
         {
             _MonsterState = other.GetComponent<MonsterState>();
             _MonsterState.MonsterHP -= attackPower;
-            Debug.Log($"{other.name} HP: {_MonsterState.MonsterHP}");
         }
     }
 }

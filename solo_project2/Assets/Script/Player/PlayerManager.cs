@@ -5,21 +5,21 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     private CharacterController PLAYER;
-    private MonsterState _MonsterState;
     private SWORD _sword;
     private Animator ANI;
 
-    [SerializeField]
-    private GameObject CAMERA;
-    [SerializeField]
-    private GameObject Sword;
+    [Header("Object")]
+    [SerializeField] private GameObject CAMERA;
+    [SerializeField] private GameObject Sword;
 
+    [Header("Speed")]
     public float PlayerSpeed;
     public float JumpSpeed;
 
-    private int attackMotion;
+    [Header("Attack")]
     public float attackSpeed;
     public float attackPower;
+    private int attackMotion;
 
     private void Start()
     {
@@ -51,7 +51,7 @@ public class PlayerManager : MonoBehaviour
             ANI.SetBool("MOVE", false);
         }
 
-        Vector3 _Move = new Vector3(MoveHorizontal, 0, MoveVertical);
+        Vector3 _Move = new(MoveHorizontal, 0, MoveVertical);
         PLAYER.Move(transform.TransformDirection(_Move) * Time.deltaTime * PlayerSpeed);
     }
 

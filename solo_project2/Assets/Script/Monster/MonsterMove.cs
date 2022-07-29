@@ -8,8 +8,7 @@ public class MonsterMove : MonoBehaviour
 {
     NavMeshAgent agent;
 
-    [SerializeField]
-    GameObject target;
+    [SerializeField] private GameObject target;
 
     private void Awake()
     {

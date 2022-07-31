@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 760017805778736125}
   - component: {fileID: 5062857293493761579}
+  - component: {fileID: 6456217585869139416}
   m_Layer: 0
   m_Name: Tile_3
   m_TagString: Tile
@@ -46,8 +47,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   build_Place: 0
+  tower: 0
   Move_Place: 0
-  Checkdelete: 0
+--- !u!65 &6456217585869139416
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4361124906879569496}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.2, z: 1}
+  m_Center: {x: 0, y: 0.1, z: 0}
 --- !u!1 &5825370708575929091
 GameObject:
   m_ObjectHideFlags: 0

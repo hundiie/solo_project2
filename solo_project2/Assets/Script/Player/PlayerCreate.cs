@@ -20,7 +20,10 @@ public class PlayerCreate : MonoBehaviour
 
     void Update()
     {
-        CreateInput();
+        if (HitObject !=null)
+        {
+            CreateInput();        
+        }
     }
     
     void CreateInput()

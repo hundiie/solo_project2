@@ -597,6 +597,7 @@ GameObject:
   - component: {fileID: 2671270382183003005}
   - component: {fileID: -6992296635423282701}
   - component: {fileID: 1298706464221156450}
+  - component: {fileID: 3939632139178602665}
   m_Layer: 0
   m_Name: Cat
   m_TagString: Monster
@@ -722,10 +723,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ecf62449471938479129f107d0d2c63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MonsterMaxHP: 10
-  MonsterHP: 0
-  MonsterSpeed: 1
+  Die: 0
+--- !u!114 &3939632139178602665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4908609767539966009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6601064f86f603842a9bc6153b8eb926, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MAT: {fileID: 2100000, guid: c7e294e05bde65747aa9d03b71fd2096, type: 2}
+  CharacterType: 1
+  MaxHP: 10
+  HP: 0
   HPpercent: 0
+  Speed: 1
+  AttackPower: 0
+  AttackSpeed: 0
+  Hit: 0
+  Slow: 0
+  Posion: 0
+  paralysis: 0
 --- !u!1001 &6163719810244992186
 PrefabInstance:
   m_ObjectHideFlags: 0

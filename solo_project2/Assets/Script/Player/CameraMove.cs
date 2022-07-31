@@ -35,16 +35,26 @@ public class CameraMove : MonoBehaviour
 
     void CrameraCenter()
     {
+        Debug.DrawRay(transform.position, transform.forward * 100f, Color.red);
+        
         Ray ray = Camera.main.ScreenPointToRay(_CameraCenter);
-        RaycastHit hit;
+        RaycastHit[] hit = Physics.RaycastAll(Camera.main.transform.position, Camera.main.transform.forward);
 
-        if (Physics.Raycast(ray, out hit))
+        for (int i = 0; i < hit.Length; i++)
         {
-            if (hit.collider.gameObject.transform.parent.tag == "Tile")
+            RaycastHit hitChecker = hit[i];
+            Debug.Log($"hitChecker : {hitChecker}");
+            if (hitChecker.collider.gameObject != null)
             {
-                Player.GetComponent<PlayerCreate>().HitObject = hit.collider.gameObject.transform.parent.gameObject;
+                if (hitChecker.collider.gameObject.transform.parent.tag == "Tile")
+                {
+                    if (Player.GetComponent<PlayerCreate>().HitObject != hitChecker.collider.gameObject.transform.parent.gameObject)
+                    {
+                        Player.GetComponent<PlayerCreate>().HitObject = hitChecker.collider.gameObject.transform.parent.gameObject;
+                    }
+                    return;
+                }
             }
         }
-        Debug.DrawRay(transform.position, transform.forward * 100f, Color.red);
     }
 }

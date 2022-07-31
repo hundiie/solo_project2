@@ -5,45 +5,28 @@ using UnityEngine.AI;
 public class MonsterState : MonoBehaviour
 {
     private NavMeshAgent agent;
-    private MonsterMove _MonsterMove;
 
-    [Header("Monster HP")]
-    public float MonsterMaxHP;
-    public float MonsterHP;
-    public float MonsterSpeed;
-    public float HPpercent;
+    public bool Die;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        _MonsterMove = GetComponent<MonsterMove>();
 
-        agent.speed = MonsterSpeed;
-
-        MonsterHP = MonsterMaxHP;
+        Die = false;
     }
 
     void Update()
     {
-        if (MonsterHP <= 0f)
+        if (Die)
         {
             MonsterDie();
         }
-        else
-        {
-            HPBAR();
-        }
-    }
-    void HPBAR()
-    {
-        HPpercent = (MonsterHP * MonsterMaxHP) / 100.0f;
     }
 
-    void MonsterDie()
+    public void MonsterDie()
     {
-        agent.enabled = false;
-        _MonsterMove.enabled = false;
-        
+        agent.speed = 0;
+
         Destroy(gameObject,1f);
     }
 }

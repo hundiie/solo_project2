@@ -107,6 +107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7612989584754259487}
   - component: {fileID: 7647414605782777248}
+  - component: {fileID: 4838053806801751045}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Tile
@@ -143,5 +144,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   build_Place: 0
+  tower: 0
   Move_Place: 1
-  Checkdelete: 0
+--- !u!65 &4838053806801751045
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8137696095725507843}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}

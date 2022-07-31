@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6207155386548989905}
   - component: {fileID: -726238291761184680}
+  - component: {fileID: 2162324101438422388}
   m_Layer: 0
   m_Name: stairs
   m_TagString: Tile
@@ -55,8 +56,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   build_Place: 0
+  tower: 0
   Move_Place: 1
-  Checkdelete: 0
+--- !u!65 &2162324101438422388
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1345457724448130400}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &1877004028867117404
 GameObject:
   m_ObjectHideFlags: 0

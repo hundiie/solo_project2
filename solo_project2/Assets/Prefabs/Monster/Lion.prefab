@@ -430,6 +430,7 @@ GameObject:
   - component: {fileID: 6309775864975612187}
   - component: {fileID: 387297893130981922}
   - component: {fileID: -6813295214394138707}
+  - component: {fileID: 6408619998262829904}
   m_Layer: 0
   m_Name: Lion
   m_TagString: Monster
@@ -556,10 +557,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ecf62449471938479129f107d0d2c63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MonsterMaxHP: 15
-  MonsterHP: 0
-  MonsterSpeed: 4
+  Die: 0
+--- !u!114 &6408619998262829904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3216922954330521176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6601064f86f603842a9bc6153b8eb926, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CharacterType: 1
+  MaxHP: 20
+  HP: 0
   HPpercent: 0
+  Speed: 4
+  AttackPower: 0
+  AttackSpeed: 0
+  Hit: 0
+  Slow: 0
+  Slow_value: 0
+  Slow_Time: 0
+  Posion: 0
+  Posion_Damage: 0
+  Posion_Time: 0
 --- !u!1 &3217019348427531114
 GameObject:
   m_ObjectHideFlags: 0

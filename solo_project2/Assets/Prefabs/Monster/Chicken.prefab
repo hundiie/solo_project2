@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4752830944766958693}
   - component: {fileID: -913275546610847508}
   - component: {fileID: 3196131382544272568}
+  - component: {fileID: 1723873017055299415}
   m_Layer: 0
   m_Name: Chicken
   m_TagString: Monster
@@ -138,10 +139,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ecf62449471938479129f107d0d2c63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MonsterMaxHP: 20
-  MonsterHP: 0
-  MonsterSpeed: 2
+  Die: 0
+--- !u!114 &1723873017055299415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7582996386020525661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6601064f86f603842a9bc6153b8eb926, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CharacterType: 1
+  MaxHP: 15
+  HP: 0
   HPpercent: 0
+  Speed: 2
+  AttackPower: 0
+  AttackSpeed: 0
+  Hit: 0
+  Slow: 0
+  Posion: 0
+  paralysis: 0
 --- !u!1 &7583506039101619733
 GameObject:
   m_ObjectHideFlags: 0

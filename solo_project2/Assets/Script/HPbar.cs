@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class HPbar : MonoBehaviour
 {
     private GameObject Taget;
-    private MonsterState _MonsterState;
+    
+    private CharacterStatus _CharacterStatus;
 
     public Slider _slider;
 
@@ -16,13 +17,13 @@ public class HPbar : MonoBehaviour
 
         if (Taget.tag == "Monster")
         {
-            _MonsterState = Taget.GetComponent<MonsterState>();
+            _CharacterStatus = Taget.GetComponent<CharacterStatus>();
         }
     }
 
     void Update()
     {
         transform.position = Camera.main.WorldToScreenPoint(Taget.transform.position) + new Vector3(0, 0, 0);
-        _slider.value = _MonsterState.HPpercent;
+        _slider.value = _CharacterStatus.HPpercent;
     }
 }

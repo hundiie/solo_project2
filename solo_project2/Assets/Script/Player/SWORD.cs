@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SWORD : MonoBehaviour
 {
-    private MonsterState _MonsterState;
     public bool attackMotioning;
     public float attackPower;
 
@@ -16,8 +15,7 @@ public class SWORD : MonoBehaviour
     {
         if (other.tag == "Monster" && attackMotioning)
         {
-            _MonsterState = other.GetComponent<MonsterState>();
-            _MonsterState.MonsterHP -= attackPower;
+            other.GetComponent<CharacterStatus>().StatusHit(attackPower);
         }
     }
 }

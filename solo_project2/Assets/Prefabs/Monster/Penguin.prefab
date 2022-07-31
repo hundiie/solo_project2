@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 9186663800763076108}
   - component: {fileID: -5216289521318686223}
   - component: {fileID: 2159152459976063654}
+  - component: {fileID: 100373879829154940}
   m_Layer: 0
   m_Name: Penguin
   m_TagString: Monster
@@ -220,10 +221,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ecf62449471938479129f107d0d2c63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MonsterMaxHP: 12
-  MonsterHP: 0
-  MonsterSpeed: 5
+  Die: 0
+--- !u!114 &100373879829154940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7357053360494151731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6601064f86f603842a9bc6153b8eb926, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CharacterType: 1
+  MaxHP: 30
+  HP: 0
   HPpercent: 0
+  Speed: 5
+  AttackPower: 0
+  AttackSpeed: 0
+  Hit: 0
+  Slow: 0
+  Slow_value: 0
+  Slow_Time: 0
+  Posion: 0
+  Posion_Damage: 0
+  Posion_Time: 0
 --- !u!1 &7357119283557148127
 GameObject:
   m_ObjectHideFlags: 0

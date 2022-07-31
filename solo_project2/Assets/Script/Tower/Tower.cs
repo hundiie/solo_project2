@@ -12,6 +12,7 @@ public class Tower : MonoBehaviour
     public TOWER _TOWER;
 
     [Header("NONAL")]//평타 타워
+    
     public bool NOMAL;
     public float NOMAL_Power;
     public float NOMAL_AttackSpeed;

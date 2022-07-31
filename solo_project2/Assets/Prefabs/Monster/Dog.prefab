@@ -596,6 +596,7 @@ GameObject:
   - component: {fileID: 1774812224856528917}
   - component: {fileID: -3678697586716759281}
   - component: {fileID: -4530209710792433827}
+  - component: {fileID: 6826350089584397123}
   m_Layer: 0
   m_Name: Dog
   m_TagString: Monster
@@ -723,10 +724,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ecf62449471938479129f107d0d2c63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MonsterMaxHP: 30
-  MonsterHP: 0
-  MonsterSpeed: 3
+  Die: 0
+--- !u!114 &6826350089584397123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4177030025001072181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6601064f86f603842a9bc6153b8eb926, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CharacterType: 1
+  MaxHP: 10
+  HP: 0
   HPpercent: 0
+  Speed: 10
+  AttackPower: 0
+  AttackSpeed: 0
+  Hit: 0
+  Slow: 0
+  Slow_value: 0
+  Slow_Time: 0
+  Posion: 0
+  Posion_Damage: 0
+  Posion_Time: 0
 --- !u!1 &4177065419447157713
 GameObject:
   m_ObjectHideFlags: 0

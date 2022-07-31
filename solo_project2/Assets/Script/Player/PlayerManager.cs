@@ -12,13 +12,12 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject CAMERA;
     [SerializeField] private GameObject Sword;
 
-    [Header("Speed")]
-    public float PlayerSpeed;
-    public float JumpSpeed;
+    [HideInInspector] public float PlayerSpeed;
+    
+    public float JumpSpeed;// üũ
 
-    [Header("Attack")]
-    public float attackSpeed;
-    public float attackPower;
+    [HideInInspector] public float attackSpeed;
+    [HideInInspector] public float attackPower;
     private int attackMotion;
 
     private void Start()
@@ -84,4 +83,6 @@ public class PlayerManager : MonoBehaviour
             ANI.SetInteger("AttackMotion", attackMotion);
         }
     }
+
+    
 }

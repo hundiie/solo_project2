@@ -24,6 +24,6 @@ public class HPbar : MonoBehaviour
     void Update()
     {
         transform.position = Camera.main.WorldToScreenPoint(Taget.transform.position) + new Vector3(0, 0, 0);
-        _slider.value = _CharacterStatus.HPpercent;
+        _slider.value = _CharacterStatus.HpPercent;
     }
 }

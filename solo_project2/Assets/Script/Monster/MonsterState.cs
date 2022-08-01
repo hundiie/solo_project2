@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
+
 public class MonsterState : MonoBehaviour
 {
     private NavMeshAgent agent;
@@ -11,7 +13,6 @@ public class MonsterState : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-
         Die = false;
     }
 
@@ -26,7 +27,8 @@ public class MonsterState : MonoBehaviour
     public void MonsterDie()
     {
         agent.speed = 0;
-
-        Destroy(gameObject,1f);
+        Destroy(gameObject);
     }
+
+
 }

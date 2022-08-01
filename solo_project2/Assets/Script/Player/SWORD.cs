@@ -15,7 +15,8 @@ public class SWORD : MonoBehaviour
     {
         if (other.tag == "Monster" && attackMotioning)
         {
-            other.GetComponent<CharacterStatus>().StatusHit(attackPower);
+            StartCoroutine(other.GetComponent<CharacterStatus>().StatusHit(attackPower));
+            attackMotioning = false;
         }
     }
 }

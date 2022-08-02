@@ -1,48 +1,123 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public enum TOWER
 {
     NOMAL,
-    SLOW,
-    POISON
+    ICE,
+    POSION,
+    DEATH
 }
+
 public class Tower : MonoBehaviour
 {
-    public TOWER _TOWER;
+    public TOWER TOWER;
 
-    [Header("NONAL")]//평타 타워
-    
-    public bool NOMAL;
-    public float NOMAL_Power;
-    public float NOMAL_AttackSpeed;
-    public GameObject NOMAL_projectile;
+    [SerializeField] private GameObject TowerManager;
+    [SerializeField] private GameObject LaunchLocation;
+    private TowerManager _TM;
 
-    [Header("ICE")]//슬로우 거는 타워
-    public bool ICE;
-    public float ICE_Power;
-    public float ICE_AttackSpeed;
-    public float ICE_Slow;
-    public GameObject ICE_projectile;
+    [HideInInspector] public GameObject TowerObject;
+    [HideInInspector] public GameObject projectile;
 
-    [Header("POSION")]//슬로우 거는 타워
-    public bool POSION;
-    public float POSION_Power;
-    public float POSION_AttackSpeed;
-    public float POSION_Time;
-    public GameObject POSION_projectile;
+    [HideInInspector] public float Money;
+    [HideInInspector] public float UpgradeMoney;
 
-    private float Delta;
+    [HideInInspector] public float AttackPower;
+    [HideInInspector] public float UpgradeAttackPower;
+
+    [HideInInspector] public float AttackSpeed;
+    [HideInInspector] public float UpgradeAttackSpeed;
+
+    [HideInInspector] public float AttackDistance;
+    [HideInInspector] public float UpgradeAttackDistance;
+
+    [Header("NONAL")]
+    [Header("ICE")]
+    [HideInInspector] public float ICE_Slow;
+    [HideInInspector] public float Upgrade_ICE_Slow;
+
+    [Header("POSION")]
+    [HideInInspector] public float POSION_Time;
+    [HideInInspector] public float Upgrade_POSION_Time;
+
+    [Header("DEATH")]
+    [HideInInspector] public float DEATH_Percent;
+    [HideInInspector] public float Upgrade_DEATH_Percent;
+
+
     private Transform Tagetting;
-    private bool check = false;
-    void Update()
+
+    private void Awake()
+    {
+        TowerDataMove();
+    }
+
+    private void Update()
+    {
+        Shot();
+    }
+
+    void TowerDataMove()
+    {
+        _TM = TowerManager.GetComponent<TowerManager>();
+
+        TowerObject = _TM.Tower[(int)TOWER];
+        projectile = _TM.projectile[(int)TOWER];
+
+        Money = _TM.Money[(int)TOWER];
+        UpgradeMoney = _TM.UpgradeMoney[(int)TOWER];
+
+        AttackPower = _TM.AttackPower[(int)TOWER];
+        UpgradeAttackPower = _TM.UpgradeAttackPower[(int)TOWER];
+
+        AttackSpeed = _TM.AttackSpeed[(int)TOWER];
+        UpgradeAttackSpeed = _TM.UpgradeAttackSpeed[(int)TOWER];
+
+        AttackDistance = _TM.AttackDistance[(int)TOWER];
+        UpgradeAttackDistance = _TM.UpgradeAttackDistance[(int)TOWER];
+
+        switch (TOWER)
+        {
+            case TOWER.NOMAL:
+                {
+
+                }
+                break;
+            case TOWER.ICE:
+                {
+                    ICE_Slow = _TM.ICE_Slow;
+                    Upgrade_ICE_Slow = _TM.Upgrade_ICE_Slow;
+                }
+                break;
+            case TOWER.POSION:
+                {
+                    POSION_Time = _TM.POSION_Time;
+                    Upgrade_POSION_Time = _TM.Upgrade_POSION_Time;
+                }
+                break;
+            case TOWER.DEATH:
+                {
+                    DEATH_Percent = _TM.DEATH_Percent;
+                    Upgrade_DEATH_Percent = _TM.Upgrade_DEATH_Percent;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    float Delta = 0;
+    bool check = false;
+    private void Shot()
     {
         Delta += Time.deltaTime;
-        if (Delta >= 0.5f&& check == true)
+        if (Delta >= AttackSpeed && check == true)
         {
-            Delta = 0;
-            gameObject.transform.LookAt(Tagetting);
-            GameObject bullet = Instantiate(NOMAL_projectile, transform.position, transform.rotation);
+            Delta = 0f;
+            LaunchLocation.transform.LookAt(Tagetting);
+            GameObject bullet = Instantiate(projectile, LaunchLocation.transform.position, LaunchLocation.transform.rotation);
             bullet.transform.LookAt(Tagetting);
         }
     }
@@ -55,11 +130,14 @@ public class Tower : MonoBehaviour
             check = true;
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Monster")
         {
+            Tagetting = other.transform;
             check = false;
         }
     }
+
 }

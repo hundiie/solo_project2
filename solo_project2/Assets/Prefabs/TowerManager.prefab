@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3893756172097253382
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5209369550719160776}
+  - component: {fileID: 8906574312928025107}
+  m_Layer: 0
+  m_Name: TowerManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5209369550719160776
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3893756172097253382}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1, y: 0, z: -2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8906574312928025107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3893756172097253382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe2da795be72ef14691fb6e0c331c703, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tower:
+  - {fileID: 11085649125255744, guid: 1a03a8eeac4303845b7a3a0f6a933b73, type: 3}
+  - {fileID: 11085649125255744, guid: 0569919791f61014981cbdb9d2050783, type: 3}
+  - {fileID: 11085649125255744, guid: 003349ffa71abd14fb5f9f60e95fcc34, type: 3}
+  - {fileID: 11085649125255744, guid: a0f3734ed2bc44346b50761f1daa3bc6, type: 3}
+  projectile:
+  - {fileID: 6244601526755426898, guid: 1afa9009ad03e6842bda843cb2020ac3, type: 3}
+  - {fileID: 6244601526755426898, guid: 5233b94fd0cf976449ed1a194858ea36, type: 3}
+  - {fileID: 6244601526755426898, guid: cc33c9f7c88b4234f89868ad795d3da7, type: 3}
+  - {fileID: 6244601526755426898, guid: 9f962e2d8e9bdc146af33e418f81ed05, type: 3}
+  Money:
+  - 0
+  - 0
+  - 0
+  - 0
+  UpgradeMoney:
+  - 0
+  - 0
+  - 0
+  - 0
+  AttackPower:
+  - 5
+  - 2
+  - 8
+  - 2
+  UpgradeAttackPower:
+  - 5
+  - 2
+  - 8
+  - 2
+  AttackSpeed:
+  - 0.7
+  - 1
+  - 1
+  - 1
+  UpgradeAttackSpeed:
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  AttackDistance:
+  - 2
+  - 2
+  - 2
+  - 2
+  UpgradeAttackDistance:
+  - 0.5
+  - 0.5
+  - 0.5
+  - 0.5
+  NOMAL: 0
+  ICE: 0
+  POSION: 0
+  DEATH: 0
+  ICE_Slow: 30
+  Upgrade_ICE_Slow: 10
+  POSION_Time: 2
+  Upgrade_POSION_Time: 0.5
+  DEATH_Percent: 10
+  Upgrade_DEATH_Percent: 5

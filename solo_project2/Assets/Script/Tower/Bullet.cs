@@ -32,10 +32,10 @@ public class Bullet : MonoBehaviour
     }
     void Update()
     {
-        transform.Translate((TargetPosition - new Vector3(0, 0.15f, 0)) * Time.deltaTime * BulletSpeed);
+        transform.Translate((TargetPosition - new Vector3(0, 0.08f, 0)) * Time.deltaTime * BulletSpeed);
 
         MyDistance = Vector3.Distance(transform.position, TowerPosition);
-        if (MyDistance > AttackDistance + 0.5f)
+        if (MyDistance > AttackDistance + 3f)
         {
             //사거리 넘기면 삭제
             Destroy(gameObject);

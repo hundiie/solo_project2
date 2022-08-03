@@ -65,10 +65,11 @@ public class Tower : MonoBehaviour
     private float ShotDelta = 0f;
     private void Update()
     {
+        Debug.Log(TowerLevel);
+
         gameObject.GetComponent<SphereCollider>().radius = AttackDistance + ((TowerLevel - 1) * UpgradeAttackDistance);
         ShotDelta += Time.deltaTime;
-        Debug.Log($"TagetEnemys.Count : {TagetEnemys.Count}");
-        if (TagetEnemys.Count > 0 && ShotDelta >= AttackSpeed)
+        if (TagetEnemys.Count > 0 && ShotDelta >= AttackSpeed - ((TowerLevel - 1) * UpgradeAttackSpeed))
         {
             ShotDelta = 0f;
             Shot();

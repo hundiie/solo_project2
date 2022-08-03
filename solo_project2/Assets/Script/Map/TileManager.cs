@@ -6,8 +6,9 @@ public class TileManager : MonoBehaviour
 {
     [Header("Build possible?")]
     public bool build_Place;
-    public bool tower = false;
-    
+    [HideInInspector] public bool tower = false;
+    [HideInInspector] public GameObject TowerObject;
+
     [Header("Move possible?")]
     public bool Move_Place;
 

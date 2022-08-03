@@ -8,7 +8,7 @@ public class TowerManager : MonoBehaviour
 
     [Header("오브젝트")]
     public GameObject[] Tower = new GameObject[0];
-    public GameObject[] projectile = new GameObject[0];
+    public GameObject[] Bullet = new GameObject[0];
 
     [Header("비용")]
     public float[] Money = new float[0];
@@ -36,6 +36,8 @@ public class TowerManager : MonoBehaviour
     [Header("ICE")]
     public float ICE_Slow;
     public float Upgrade_ICE_Slow;
+    public float ICE_Time;
+    public float Upgrade_ICE_Time;
 
     [Header("POSION")]
     public float POSION_Time;

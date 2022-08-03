@@ -43,17 +43,18 @@ public class CameraMove : MonoBehaviour
         for (int i = 0; i < hit.Length; i++)
         {
             RaycastHit hitChecker = hit[i];
-            Debug.Log($"hitChecker : {hitChecker}");
-            if (hitChecker.collider.gameObject != null)
+
+            if (hitChecker.collider.gameObject.transform.parent.tag == "Tile")
             {
-                if (hitChecker.collider.gameObject.transform.parent.tag == "Tile")
+                if (Player.GetComponent<PlayerCreate>().HitObject != hitChecker.collider.gameObject.transform.parent.gameObject)
                 {
-                    if (Player.GetComponent<PlayerCreate>().HitObject != hitChecker.collider.gameObject.transform.parent.gameObject)
-                    {
-                        Player.GetComponent<PlayerCreate>().HitObject = hitChecker.collider.gameObject.transform.parent.gameObject;
-                    }
-                    return;
+                    Player.GetComponent<PlayerCreate>().HitObject = hitChecker.collider.gameObject.transform.parent.gameObject;
                 }
+                return;
+            }
+            else
+            {
+                Player.GetComponent<PlayerCreate>().HitObject = null;
             }
         }
     }

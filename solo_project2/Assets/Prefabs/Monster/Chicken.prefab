@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SliderHpObject: {fileID: 2319716915449628720}
   CharacterType: 1
-  MaxHP: 15
+  MaxHP: 20
   HP: 0
   HpPercent: 0
   Speed: 2
@@ -165,7 +165,10 @@ MonoBehaviour:
   Slow: 0
   Stun: 0
   Posion: 0
-  paralysis: 0
+  death: 0
+  HpUp: 0
+  MoveSpeedUp: 0
+  AttackSpeedUp: 0
 --- !u!1 &7583506039101619733
 GameObject:
   m_ObjectHideFlags: 0

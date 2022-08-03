@@ -33,9 +33,22 @@ public class PlayerCreate : MonoBehaviour
 
     void Update()
     {
-        if (HitObject !=null)
+        if (HitObject != null)
         {
-            CreateInput();        
+            switch (HitObject.tag)
+            {
+                case "Tile":
+                    {
+                        CreateInput();
+                    }
+                    break;
+                case "Tower":
+                    {
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
     }
     
@@ -45,21 +58,24 @@ public class PlayerCreate : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.F) && !Key_Push)
             {
-                Key_Push = true;
-                Key_F = true;
-
                 InputKey_F();
             }
         }
 
-        if (Key_Push && Key_F)
+        if (Key_Push)
         {
-            KeySet_F();
+            if (Key_F)
+            {
+                KeySet_F();
+            }
         }
     }
 
     private void InputKey_F()
     {
+        Key_Push = true;
+        Key_F = true;
+
         UI.GetComponent<UIManager>()._TOWER_UI = true;
         TowerManager.transform.position = HitObject.transform.position;
 
@@ -69,10 +85,11 @@ public class PlayerCreate : MonoBehaviour
     }
     private void OutputKey_F()
     {
-        TileColorChange(SaveObject, BasicColor);
-        UI.GetComponent<UIManager>()._TOWER_UI = false;
         Key_Push = false;
         Key_F = false;
+
+        TileColorChange(SaveObject, BasicColor);
+        UI.GetComponent<UIManager>()._TOWER_UI = false;
     }
 
 

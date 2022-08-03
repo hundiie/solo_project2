@@ -13,13 +13,17 @@ public enum TOWER
 public class Tower : MonoBehaviour
 {
     public TOWER TOWER;
+    
+    private List<GameObject> TagetEnemys = new List<GameObject>();
 
     [SerializeField] private GameObject TowerManager;
     [SerializeField] private GameObject LaunchLocation;
     private TowerManager _TM;
+    private Bullet _bullet;
+    [HideInInspector] public int TowerLevel;
 
     [HideInInspector] public GameObject TowerObject;
-    [HideInInspector] public GameObject projectile;
+    [HideInInspector] public GameObject _Bullet;
 
     [HideInInspector] public float Money;
     [HideInInspector] public float UpgradeMoney;
@@ -37,6 +41,8 @@ public class Tower : MonoBehaviour
     [Header("ICE")]
     [HideInInspector] public float ICE_Slow;
     [HideInInspector] public float Upgrade_ICE_Slow;
+    [HideInInspector] public float ICE_Time;
+    [HideInInspector] public float Upgrade_ICE_Time;
 
     [Header("POSION")]
     [HideInInspector] public float POSION_Time;
@@ -46,25 +52,36 @@ public class Tower : MonoBehaviour
     [HideInInspector] public float DEATH_Percent;
     [HideInInspector] public float Upgrade_DEATH_Percent;
 
-
     private Transform Tagetting;
 
     private void Awake()
     {
+        TowerLevel = 1;
+
         TowerDataMove();
+        BulletDataMove();
     }
 
+    private float ShotDelta = 0f;
     private void Update()
     {
-        Shot();
+        gameObject.GetComponent<SphereCollider>().radius = AttackDistance + ((TowerLevel - 1) * UpgradeAttackDistance);
+        ShotDelta += Time.deltaTime;
+        Debug.Log($"TagetEnemys.Count : {TagetEnemys.Count}");
+        if (TagetEnemys.Count > 0 && ShotDelta >= AttackSpeed)
+        {
+            ShotDelta = 0f;
+            Shot();
+             
+        }
     }
 
-    void TowerDataMove()
+    private void TowerDataMove()
     {
         _TM = TowerManager.GetComponent<TowerManager>();
 
         TowerObject = _TM.Tower[(int)TOWER];
-        projectile = _TM.projectile[(int)TOWER];
+        _Bullet = _TM.Bullet[(int)TOWER];
 
         Money = _TM.Money[(int)TOWER];
         UpgradeMoney = _TM.UpgradeMoney[(int)TOWER];
@@ -77,6 +94,7 @@ public class Tower : MonoBehaviour
 
         AttackDistance = _TM.AttackDistance[(int)TOWER];
         UpgradeAttackDistance = _TM.UpgradeAttackDistance[(int)TOWER];
+        gameObject.GetComponent<SphereCollider>().radius = AttackDistance + ((TowerLevel - 1) * UpgradeAttackDistance);
 
         switch (TOWER)
         {
@@ -89,6 +107,8 @@ public class Tower : MonoBehaviour
                 {
                     ICE_Slow = _TM.ICE_Slow;
                     Upgrade_ICE_Slow = _TM.Upgrade_ICE_Slow;
+                    ICE_Time = _TM.ICE_Time;
+                    Upgrade_ICE_Time = _TM.Upgrade_ICE_Time;
                 }
                 break;
             case TOWER.POSION:
@@ -108,35 +128,76 @@ public class Tower : MonoBehaviour
         }
     }
 
-    float Delta = 0;
-    bool check = false;
+    private void BulletDataMove()
+    {
+        _bullet = _Bullet.GetComponent<Bullet>();
+        _bullet.TowerPosition = transform.position;
+
+        _bullet.TOWER = TOWER;
+        _bullet.AttackPower = AttackPower + ((TowerLevel - 1) * UpgradeAttackPower);
+        _bullet.AttackDistance = AttackDistance + ((TowerLevel - 1) * UpgradeAttackDistance);
+
+        switch (TOWER)
+        {
+            case TOWER.NOMAL:
+                {
+
+                }
+                break;
+            case TOWER.ICE:
+                {
+                    _bullet.ICE_Slow = ICE_Slow + ((TowerLevel - 1) * Upgrade_ICE_Slow);
+                    _bullet.ICE_Time = ICE_Time + ((TowerLevel - 1) * Upgrade_ICE_Time);
+                }
+                break;
+            case TOWER.POSION:
+                {
+                    _bullet.POSION_Time = POSION_Time + ((TowerLevel - 1) * Upgrade_POSION_Time);
+                }
+                break;
+            case TOWER.DEATH:
+                {
+                    _bullet.DEATH_Percent = DEATH_Percent + ((TowerLevel - 1) * Upgrade_DEATH_Percent);
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
     private void Shot()
     {
-        Delta += Time.deltaTime;
-        if (Delta >= AttackSpeed && check == true)
+        for (int i = 0; i < TagetEnemys.Count; i++)
         {
-            Delta = 0f;
-            LaunchLocation.transform.LookAt(Tagetting);
-            GameObject bullet = Instantiate(projectile, LaunchLocation.transform.position, LaunchLocation.transform.rotation);
-            bullet.transform.LookAt(Tagetting);
+            if (TagetEnemys[i] != null)
+            {
+                _bullet.TargetPosition = (TagetEnemys[i].transform.position - transform.position).normalized;
+                LaunchLocation.transform.LookAt(TagetEnemys[i].transform);
+                Instantiate(_Bullet, LaunchLocation.transform.position, Quaternion.identity, transform);
+                break;
+            }
         }
+        
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Monster")
         {
-            Tagetting = other.transform;
-            check = true;
+            TagetEnemys.Add(other.gameObject);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Monster")
+        foreach (GameObject go in TagetEnemys)
         {
-            Tagetting = other.transform;
-            check = false;
+            if (go == other.gameObject)
+            {
+                TagetEnemys.Remove(go);
+                break;
+            }
         }
     }
 

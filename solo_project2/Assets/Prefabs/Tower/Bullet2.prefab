@@ -110,4 +110,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9e2048b0e0624a428ca9ec75125c387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletSpeed: 0.1
+  TOWER: 1
+  TowerPosition: {x: 2, y: 0, z: -1}
+  TargetPosition: {x: -0.78951657, y: 0.30442235, z: 0.53290766}
+  AttackPower: 2
+  AttackDistance: 4
+  ICE_Slow: 50
+  ICE_Time: 3
+  POSION_Time: 0
+  DEATH_Percent: 0
+  BulletSpeed: 20

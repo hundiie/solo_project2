@@ -123,7 +123,6 @@ public class CharacterStatus : MonoBehaviour
                         _MonsterState.Die = true;
                     }
 
-
                     Nav.speed = Speed;
                 }
                 break;
@@ -182,7 +181,6 @@ public class CharacterStatus : MonoBehaviour
         }
 
 }
-
 
     public void colorChange(Color _Coler)
     {
@@ -272,18 +270,22 @@ public class CharacterStatus : MonoBehaviour
         Posion = false;
         colorChange(Color.white);
     }
-    
+
     /// <summary>
     /// (디버프) 즉사
     /// </summary>
+    /// <param name="Death_Percent"> 즉사 확률 </param>
     /// <returns></returns>
-    public IEnumerator StatusDeath()
+    public IEnumerator StatusDeath(float Death_Percent)
     {
-        death = true;
+        float RandomFloat = Random.Range(0.0f, 100.0f);
+        if (RandomFloat < Death_Percent)
+        {
+            death = true;
+            colorChange(Color.black);
+            yield return new WaitForSeconds(0.1f);
 
-        yield return new WaitForSeconds(0.1f);
-        
-        death = false;
-
+            death = false;
+        }
     }
 }

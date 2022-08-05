@@ -80,18 +80,23 @@ MonoBehaviour:
   TOWER: 0
   TowerManager: {fileID: 3893756172097253382, guid: 0549c397ab75e414d9ac032930865469, type: 3}
   LaunchLocation: {fileID: 7991766017003253037}
+  TowerLevel: 0
   TowerObject: {fileID: 0}
-  projectile: {fileID: 0}
+  _Bullet: {fileID: 0}
   Money: 0
   UpgradeMoney: 0
   AttackPower: 0
   UpgradeAttackPower: 0
   AttackSpeed: 0
   UpgradeAttackSpeed: 0
+  BulletSpeed: 0
+  UpgradeBulletSpeed: 0
   AttackDistance: 0
   UpgradeAttackDistance: 0
   ICE_Slow: 0
   Upgrade_ICE_Slow: 0
+  ICE_Time: 0
+  Upgrade_ICE_Time: 0
   POSION_Time: 0
   Upgrade_POSION_Time: 0
   DEATH_Percent: 0

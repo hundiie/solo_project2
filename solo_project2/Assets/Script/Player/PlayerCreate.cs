@@ -6,11 +6,9 @@ using TMPro;
 public class PlayerCreate : MonoBehaviour
 {
     [HideInInspector] public GameObject HitObject;
-    [SerializeField] private TextMeshProUGUI MoneyUI;
     private GameObject SaveObject;
-    private Color BasicColor;
     public GameObject UI;
-
+    UIManager UI_Manager;
     [Header("PLAYER")]
     public int Money;
     
@@ -26,15 +24,14 @@ public class PlayerCreate : MonoBehaviour
     private void Start()
     {
         _TM = TowerManager.GetComponent<TowerManager>();
-        
+        UI_Manager = UI.GetComponent<UIManager>();
+        UI_Manager.Moneyupdate(Money);
         Key_Push = false;
         Key_F = false;
     }
 
     void Update()
     {
-        MoneyUI.text = $"GOLD : {Money}";
-
         if (HitObject != null)
         {
             switch (HitObject.tag)
@@ -79,22 +76,45 @@ public class PlayerCreate : MonoBehaviour
         Key_F = true;
 
         SaveObject = HitObject;
-        BasicColor = TileColorSave(SaveObject);
         TileColorChange(SaveObject, Color.red);
 
-        Debug.Log("들어오나1");
         if (!SaveObject.GetComponent<TileManager>().tower)
         {
-            Debug.Log("들어오나2");
-            UI.GetComponent<UIManager>()._TOWER_UI = true;
+            UI_Manager._TOWER_UI = true;
             TowerManager.transform.position = HitObject.transform.position;
 
         }
         else if (SaveObject.GetComponent<TileManager>().tower)
         {
-            Debug.Log($"들어오나3 : {UI.GetComponent<UIManager>()._UPGRADE_UI}");
-            UI.GetComponent<UIManager>()._UPGRADE_UI = true;
-            Debug.Log($"들어오나4 : {UI.GetComponent<UIManager>()._UPGRADE_UI}");
+            Tower towerData = SaveObject.GetComponent<TileManager>().TowerObject.GetComponent<Tower>();
+
+            float _attackPower = towerData.AttackPower + ((towerData.TowerLevel - 1) * towerData.UpgradeAttackPower);
+            float _attackSpeed = towerData.AttackSpeed - ((towerData.TowerLevel - 1) * towerData.UpgradeAttackSpeed);
+            float _attackDistance = towerData.AttackDistance + ((towerData.TowerLevel - 1) * towerData.UpgradeAttackDistance);
+            string _towerName = "";
+            switch (towerData.TOWER)
+            {
+                case TOWER.NOMAL:
+                    _towerName = "NOMAL";
+                    break;
+                case TOWER.ICE:
+                    _towerName = "ICE";
+                    break;
+                case TOWER.POSION:
+                    _towerName = "POSION";
+                    break;
+                case TOWER.DEATH:
+                    _towerName = "DEATH";
+                    break;
+                default:
+                    break;
+            }
+
+
+            UI_Manager._STATUS_UI = true;
+            UI_Manager.Statusupdate(_towerName, towerData.TowerLevel, _attackPower, towerData.UpgradeAttackPower, _attackSpeed, towerData.UpgradeAttackSpeed, _attackDistance, towerData.UpgradeAttackDistance, towerData.UpgradeMoney);
+
+            UI_Manager._UPGRADE_UI = true;
         }
     }
     private void OutputKey_F()
@@ -102,12 +122,15 @@ public class PlayerCreate : MonoBehaviour
         Key_Push = false;
         Key_F = false;
 
-        TileColorChange(SaveObject, BasicColor);
-        UI.GetComponent<UIManager>()._TOWER_UI = false;
-        UI.GetComponent<UIManager>()._UPGRADE_UI = false;
+        TileColorChange(SaveObject, Color.white);
+        UI_Manager._TOWER_UI = false;
+        UI_Manager._UPGRADE_UI = false;
+        UI_Manager._STATUS_UI = false;
+        UI_Manager.Moneyupdate(Money);
     }
     private void KeySet_F()
     {
+        int needMoney;
         if (!SaveObject.GetComponent<TileManager>().tower)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
@@ -116,35 +139,73 @@ public class PlayerCreate : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                TowerCreate(0);
+                needMoney = _TM.Money[0];
+                if (Money >= needMoney)
+                {
+                    Money -= needMoney;
+                    TowerCreate(0);
+                }
                 OutputKey_F();
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                TowerCreate(1);
+                needMoney = _TM.Money[1];
+                if (Money >= needMoney)
+                {
+                    Money -= needMoney;
+                    TowerCreate(1);
+                }
                 OutputKey_F();
             }
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                TowerCreate(2);
+                needMoney = _TM.Money[2];
+                if (Money >= needMoney)
+                {
+                    Money -= needMoney;
+                    TowerCreate(2);
+                }
                 OutputKey_F();
             }
             if (Input.GetKeyDown(KeyCode.Alpha4))
             {
-                TowerCreate(3);
+                needMoney = _TM.Money[3];
+                if (Money >= needMoney)
+                {
+                    Money -= needMoney;
+                    TowerCreate(3);
+                }
                 OutputKey_F();
             }
         }
         else if (SaveObject.GetComponent<TileManager>().tower)
         {
+            int needUpgread;
+            int maxLevel = SaveObject.GetComponent<TileManager>().TowerObject.GetComponent<Tower>().MaxLevel;
+            int TowerLevel = SaveObject.GetComponent<TileManager>().TowerObject.GetComponent<Tower>().TowerLevel;
+
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 OutputKey_F();
             }
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.H))
             {
-                SaveObject.GetComponent<TileManager>().TowerObject.GetComponent<Tower>().TowerLevel += 1;
-                SaveObject.GetComponent<TileManager>().TowerObject.transform.localScale += new Vector3(0.03f, 0.03f, 0.03f);
+                Destroy(SaveObject.GetComponent<TileManager>().TowerObject);
+                SaveObject.GetComponent<TileManager>().tower = false;
+                Money += 10;
+                OutputKey_F();
+            }
+            if (Input.GetKeyDown(KeyCode.G) && maxLevel >TowerLevel)
+            {
+                needUpgread = SaveObject.GetComponent<TileManager>().TowerObject.GetComponent<Tower>().UpgradeMoney;
+
+                if (Money >= needUpgread)
+                {
+                    Money -= needUpgread;
+
+                    SaveObject.GetComponent<TileManager>().TowerObject.GetComponent<Tower>().TowerLevel += 1;
+                    SaveObject.GetComponent<TileManager>().TowerObject.transform.localScale += new Vector3(0.03f, 0.03f, 0.03f);
+                }
                 OutputKey_F();
             }
         }
@@ -157,21 +218,8 @@ public class PlayerCreate : MonoBehaviour
 
     }
 
-    Color TileColorSave(GameObject _gameObject)
-    {
-        return _gameObject.transform.GetChild(0).gameObject.GetComponent<Renderer>().material.color;
-    }
     void TileColorChange(GameObject _gameObject, Color _color)
     {
-        _gameObject.transform.GetChild(0).gameObject.GetComponent<Renderer>().material.color = _color;
+        _gameObject.GetComponent<Renderer>().material.color = _color;
     }
-
-    void SellTower()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            UI.GetComponent<UIManager>()._SELL_UI = false;
-        }
-    }
-
 }

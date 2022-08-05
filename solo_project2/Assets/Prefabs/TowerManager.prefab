@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3893756172097253382}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 1}
+  m_LocalPosition: {x: 6, y: 0, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -54,16 +54,9 @@ MonoBehaviour:
   - {fileID: 6244601526755426898, guid: 5233b94fd0cf976449ed1a194858ea36, type: 3}
   - {fileID: 6244601526755426898, guid: cc33c9f7c88b4234f89868ad795d3da7, type: 3}
   - {fileID: 6244601526755426898, guid: 9f962e2d8e9bdc146af33e418f81ed05, type: 3}
-  Money:
-  - 0
-  - 0
-  - 0
-  - 0
-  UpgradeMoney:
-  - 0
-  - 0
-  - 0
-  - 0
+  MaxLevel: 05000000050000000500000005000000
+  Money: 1e00000028000000280000001e000000
+  UpgradeMoney: 1e000000280000002800000028000000
   AttackPower:
   - 5
   - 2
@@ -72,33 +65,43 @@ MonoBehaviour:
   UpgradeAttackPower:
   - 5
   - 2
-  - 8
+  - 15
   - 2
   AttackSpeed:
-  - 0.5
-  - 0.5
-  - 1
-  - 0.5
+  - 0.7
+  - 0.8
+  - 1.2
+  - 0.8
   UpgradeAttackSpeed:
+  - 0.05
+  - 0.05
   - 0.1
-  - 0.1
-  - 0.1
-  - 0.1
+  - 0.05
+  BulletSpeed:
+  - 40
+  - 40
+  - 40
+  - 40
+  UpgradeBulletSpeed:
+  - 0
+  - 0
+  - 0
+  - 0
   AttackDistance:
-  - 4
-  - 4
-  - 4
-  - 4
+  - 3
+  - 3
+  - 3
+  - 3
   UpgradeAttackDistance:
-  - 1
-  - 1
-  - 1
-  - 1
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
   NOMAL: 0
   ICE: 0
   POSION: 0
   DEATH: 0
-  ICE_Slow: 50
+  ICE_Slow: 30
   Upgrade_ICE_Slow: 10
   ICE_Time: 3
   Upgrade_ICE_Time: 1

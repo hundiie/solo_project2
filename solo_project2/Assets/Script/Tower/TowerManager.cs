@@ -5,14 +5,17 @@ using UnityEngine;
 public class TowerManager : MonoBehaviour
 {
     private Tower _Tower;
+    
+    //구조체로 만들걸...
 
     [Header("오브젝트")]
     public GameObject[] Tower = new GameObject[0];
     public GameObject[] Bullet = new GameObject[0];
+    public int[] MaxLevel;
 
     [Header("비용")]
-    public float[] Money = new float[0];
-    public float[] UpgradeMoney = new float[0];
+    public int[] Money = new int[0];
+    public int[] UpgradeMoney = new int[0];
 
     [Header("공격력")]
     public float[] AttackPower = new float[0];
@@ -21,6 +24,10 @@ public class TowerManager : MonoBehaviour
     [Header("공격 속도")]
     public float[] AttackSpeed = new float[0];
     public float[] UpgradeAttackSpeed = new float[0];
+    
+    [Header("투사체 속도")]
+    public float[] BulletSpeed = new float[0];
+    public float[] UpgradeBulletSpeed = new float[0];
 
     [Header("사거리")]
     public float[] AttackDistance = new float[0];

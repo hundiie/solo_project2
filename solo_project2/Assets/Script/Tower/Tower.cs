@@ -21,18 +21,22 @@ public class Tower : MonoBehaviour
     private TowerManager _TM;
     private Bullet _bullet;
     [HideInInspector] public int TowerLevel;
+    [HideInInspector] public int MaxLevel;
 
     [HideInInspector] public GameObject TowerObject;
     [HideInInspector] public GameObject _Bullet;
 
-    [HideInInspector] public float Money;
-    [HideInInspector] public float UpgradeMoney;
+    [HideInInspector] public int Money;
+    [HideInInspector] public int UpgradeMoney;
 
     [HideInInspector] public float AttackPower;
     [HideInInspector] public float UpgradeAttackPower;
 
     [HideInInspector] public float AttackSpeed;
     [HideInInspector] public float UpgradeAttackSpeed;
+
+    [HideInInspector] public float BulletSpeed;
+    [HideInInspector] public float UpgradeBulletSpeed;
 
     [HideInInspector] public float AttackDistance;
     [HideInInspector] public float UpgradeAttackDistance;
@@ -63,11 +67,15 @@ public class Tower : MonoBehaviour
     }
 
     private float ShotDelta = 0f;
+    private int saveLevel;
     private void Update()
     {
-        Debug.Log(TowerLevel);
-
-        gameObject.GetComponent<SphereCollider>().radius = AttackDistance + ((TowerLevel - 1) * UpgradeAttackDistance);
+        if (saveLevel != TowerLevel)
+        {
+            saveLevel = TowerLevel;
+            gameObject.GetComponent<SphereCollider>().radius = AttackDistance + ((TowerLevel - 1) * UpgradeAttackDistance);
+            _bullet.AttackDistance = AttackDistance + ((TowerLevel - 1) * UpgradeAttackDistance);
+        }
         ShotDelta += Time.deltaTime;
         if (TagetEnemys.Count > 0 && ShotDelta >= AttackSpeed - ((TowerLevel - 1) * UpgradeAttackSpeed))
         {
@@ -80,6 +88,7 @@ public class Tower : MonoBehaviour
     private void TowerDataMove()
     {
         _TM = TowerManager.GetComponent<TowerManager>();
+        MaxLevel = _TM.MaxLevel[(int)TOWER];
 
         TowerObject = _TM.Tower[(int)TOWER];
         _Bullet = _TM.Bullet[(int)TOWER];
@@ -92,6 +101,9 @@ public class Tower : MonoBehaviour
 
         AttackSpeed = _TM.AttackSpeed[(int)TOWER];
         UpgradeAttackSpeed = _TM.UpgradeAttackSpeed[(int)TOWER];
+
+        BulletSpeed = _TM.BulletSpeed[(int)TOWER];
+        UpgradeBulletSpeed = _TM.UpgradeBulletSpeed [(int)TOWER];
 
         AttackDistance = _TM.AttackDistance[(int)TOWER];
         UpgradeAttackDistance = _TM.UpgradeAttackDistance[(int)TOWER];
@@ -133,9 +145,9 @@ public class Tower : MonoBehaviour
     {
         _bullet = _Bullet.GetComponent<Bullet>();
         _bullet.TowerPosition = transform.position;
-
         _bullet.TOWER = TOWER;
         _bullet.AttackPower = AttackPower + ((TowerLevel - 1) * UpgradeAttackPower);
+        _bullet.BulletSpeed = BulletSpeed + ((TowerLevel - 1) * UpgradeBulletSpeed);
         _bullet.AttackDistance = AttackDistance + ((TowerLevel - 1) * UpgradeAttackDistance);
 
         switch (TOWER)
@@ -174,7 +186,7 @@ public class Tower : MonoBehaviour
             {
                 _bullet.TargetPosition = (TagetEnemys[i].transform.position - transform.position).normalized;
                 LaunchLocation.transform.LookAt(TagetEnemys[i].transform);
-                Instantiate(_Bullet, LaunchLocation.transform.position, Quaternion.identity, transform);
+                Instantiate(_Bullet, LaunchLocation.transform.position, LaunchLocation.transform.rotation);
                 break;
             }
         }

@@ -531,7 +531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc7da927da281df4f9ae0e55ab4834c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 7998877204060154706, guid: 9e9aff2e3796d0248846b1a65f5c6706, type: 3}
+  target: {fileID: 2924233133589723968, guid: 9e9aff2e3796d0248846b1a65f5c6706, type: 3}
 --- !u!65 &387297893130981922
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -570,8 +570,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6601064f86f603842a9bc6153b8eb926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UI: {fileID: 6582203943102847325, guid: 8872b5044326a0f49ade775a829b6e65, type: 3}
   SliderHpObject: {fileID: 2639041023055458963}
   CharacterType: 1
+  DropMoney: 10
   MaxHP: 20
   HP: 0
   HpPercent: 0
@@ -587,6 +589,8 @@ MonoBehaviour:
   HpUp: 0
   MoveSpeedUp: 0
   AttackSpeedUp: 0
+  cameraToLookAt: {fileID: 0}
+  hpp: {fileID: 2639041023055458963}
 --- !u!1 &3217019348427531114
 GameObject:
   m_ObjectHideFlags: 0

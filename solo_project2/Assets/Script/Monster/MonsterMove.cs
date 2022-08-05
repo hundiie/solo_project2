@@ -19,4 +19,12 @@ public class MonsterMove : MonoBehaviour
     {
         agent.SetDestination(target.transform.position);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "End")
+        {
+            Destroy(gameObject);
+        }
+    }
 }

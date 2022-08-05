@@ -10,6 +10,8 @@ TagManager:
   - Tower
   - UI
   - Bullet
+  - End
+  - Water
   layers:
   - Default
   - TransparentFX

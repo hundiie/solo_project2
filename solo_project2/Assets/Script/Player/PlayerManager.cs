@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -13,12 +14,14 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject Sword;
 
     [HideInInspector] public float PlayerSpeed;
-    
+
     public float JumpSpeed;// üũ
 
     [HideInInspector] public float attackSpeed;
     [HideInInspector] public float attackPower;
     private int attackMotion;
+
+    public bool WaterC = false;
 
     private void Start()
     {
@@ -30,7 +33,6 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-        
         PlayerMove();
         PlayerAttack();
     }
@@ -71,7 +73,7 @@ public class PlayerManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && attackTime >= attackSpeed)
         {
             attackTime = 0f;
-            
+
             attackMotion += 1;
 
             if (attackMotion > 1)
@@ -84,5 +86,11 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Water")
+        {
+            SceneManager.LoadScene(0);
+        }
+    }
 }

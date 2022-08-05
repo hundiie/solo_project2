@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   build_Place: 1
   tower: 0
+  TowerObject: {fileID: 0}
   Move_Place: 1
 --- !u!65 &6536727188228521796
 BoxCollider:

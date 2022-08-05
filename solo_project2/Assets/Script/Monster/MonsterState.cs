@@ -9,7 +9,6 @@ public class MonsterState : MonoBehaviour
     private NavMeshAgent agent;
     private CharacterStatus status;
     private Bullet _Bullet;
-
     public bool Die;
 
     void Start()

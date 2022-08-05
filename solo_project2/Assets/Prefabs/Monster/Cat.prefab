@@ -697,7 +697,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc7da927da281df4f9ae0e55ab4834c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 7998877204060154706, guid: 9e9aff2e3796d0248846b1a65f5c6706, type: 3}
+  target: {fileID: 2924233133589723968, guid: 9e9aff2e3796d0248846b1a65f5c6706, type: 3}
 --- !u!65 &-6992296635423282701
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -709,8 +709,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.82, y: 0.87, z: 1.42}
-  m_Center: {x: 0, y: 0.94, z: 0}
+  m_Size: {x: 0.82, y: 1.76, z: 1.42}
+  m_Center: {x: 0, y: 0.77, z: 0}
 --- !u!114 &1298706464221156450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -736,8 +736,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6601064f86f603842a9bc6153b8eb926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UI: {fileID: 6582203943102847325, guid: 8872b5044326a0f49ade775a829b6e65, type: 3}
   SliderHpObject: {fileID: 7791955829991878218}
   CharacterType: 1
+  DropMoney: 10
   MaxHP: 50
   HP: 0
   HpPercent: 0
@@ -753,6 +755,8 @@ MonoBehaviour:
   HpUp: 0
   MoveSpeedUp: 0
   AttackSpeedUp: 0
+  cameraToLookAt: {fileID: 0}
+  hpp: {fileID: 7791955829991878218}
 --- !u!1001 &5219112058065859562
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -771,6 +775,10 @@ PrefabInstance:
     - target: {fileID: 2615628524845407648, guid: d7df331278314cc41bcf3b2a12b283c6, type: 3}
       propertyPath: m_Name
       value: 'Hp_UI '
+      objectReference: {fileID: 0}
+    - target: {fileID: 2615628524845407650, guid: d7df331278314cc41bcf3b2a12b283c6, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2615628524845407652, guid: d7df331278314cc41bcf3b2a12b283c6, type: 3}
       propertyPath: m_Pivot.x

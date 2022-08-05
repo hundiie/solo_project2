@@ -44,11 +44,11 @@ public class CameraMove : MonoBehaviour
         {
             RaycastHit hitChecker = hit[i];
 
-            if (hitChecker.collider.gameObject.transform.parent.tag == "Tile")
+            if (hitChecker.collider.gameObject.transform.tag == "Tile")
             {
-                if (Player.GetComponent<PlayerCreate>().HitObject != hitChecker.collider.gameObject.transform.parent.gameObject)
+                if (Player.GetComponent<PlayerCreate>().HitObject != hitChecker.collider.gameObject.transform.gameObject)
                 {
-                    Player.GetComponent<PlayerCreate>().HitObject = hitChecker.collider.gameObject.transform.parent.gameObject;
+                    Player.GetComponent<PlayerCreate>().HitObject = hitChecker.collider.gameObject.transform.gameObject;
                 }
                 return;
             }

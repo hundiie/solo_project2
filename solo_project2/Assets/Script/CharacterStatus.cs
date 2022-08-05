@@ -15,13 +15,16 @@ public class CharacterStatus : MonoBehaviour
     private MonsterState _MonsterState;
     [SerializeField] private GameObject SliderHpObject;
     private Slider SliderHP;
+
+    
+
     public ObjectType CharacterType;
+    [Header("Monster")]
+    public int DropMoney;
 
     //플레이어 관련
     private PlayerManager PL_Manager;
-
     //공용
-
     private Animator _Animator;
 
     [Header("HP")]
@@ -59,6 +62,8 @@ public class CharacterStatus : MonoBehaviour
     public bool MoveSpeedUp;//0
     public bool AttackSpeedUp;//0
 
+    [HideInInspector] public Camera cameraToLookAt;
+    [HideInInspector] public GameObject hpp;
 
     private void Awake()
     {
@@ -76,7 +81,7 @@ public class CharacterStatus : MonoBehaviour
 
     private void Start()
     {
-       
+        cameraToLookAt = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         switch (CharacterType)
         {
             case ObjectType.Player:
@@ -102,7 +107,8 @@ public class CharacterStatus : MonoBehaviour
     {
         HpPercent = HP / (MaxHP / 100);
         
-
+        hpp.transform.LookAt(cameraToLookAt.transform);
+        
         switch (CharacterType)
         {
             case ObjectType.Player:
@@ -117,6 +123,7 @@ public class CharacterStatus : MonoBehaviour
                 {
                     StatusMove();
                     SliderHP.value = HpPercent;
+                    
                     if (HP <= 0)
                     {
                         SliderHP.gameObject.SetActive(false);
@@ -222,6 +229,7 @@ public class CharacterStatus : MonoBehaviour
         {
             BestSlowvalue = _Slow_value;
         }
+
         SecSlow = (BasicSpeed / 100) * (100 - _Slow_value);
         
         Slow = true;

@@ -20,7 +20,7 @@ public class MonsterSpawner : MonoBehaviour
         {
             int ran = Random.Range(0, 5);
             spawnerTime = 0.0f;
-            Instantiate(Monster[ran], transform.position, transform.rotation);
+            Instantiate(Monster[ran],transform.position,transform.rotation);
         }
     }
 }

@@ -11,7 +11,7 @@ public class PlayerCreate : MonoBehaviour
     UIManager UI_Manager;
     [Header("PLAYER")]
     public int Money;
-    
+
     [Header("TOWER")]
     public GameObject TowerManager;
     private TowerManager _TM;
@@ -25,7 +25,7 @@ public class PlayerCreate : MonoBehaviour
     {
         _TM = TowerManager.GetComponent<TowerManager>();
         UI_Manager = UI.GetComponent<UIManager>();
-        UI_Manager.Moneyupdate(Money);
+        UI_Manager.MoneyUpdate(Money);
         Key_Push = false;
         Key_F = false;
     }
@@ -126,7 +126,7 @@ public class PlayerCreate : MonoBehaviour
         UI_Manager._TOWER_UI = false;
         UI_Manager._UPGRADE_UI = false;
         UI_Manager._STATUS_UI = false;
-        UI_Manager.Moneyupdate(Money);
+        UI_Manager.MoneyUpdate(Money);
     }
     private void KeySet_F()
     {
@@ -206,6 +206,10 @@ public class PlayerCreate : MonoBehaviour
                     SaveObject.GetComponent<TileManager>().TowerObject.GetComponent<Tower>().TowerLevel += 1;
                     SaveObject.GetComponent<TileManager>().TowerObject.transform.localScale += new Vector3(0.03f, 0.03f, 0.03f);
                 }
+                OutputKey_F();
+            }
+            else if (Input.GetKeyDown(KeyCode.G) && maxLevel <= TowerLevel)
+            {
                 OutputKey_F();
             }
         }

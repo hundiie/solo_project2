@@ -28,6 +28,15 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI UpDistanceUI;
     public TextMeshProUGUI UpgradeUI;
 
+    [Header("라이프 관련")]
+    public GameObject LIFE_UI;
+    [HideInInspector] public bool _LIFE_UI;
+    public TextMeshProUGUI LifeUI;
+
+    [Header("라이프 관련")]
+    public GameObject GAMEOVER_UI;
+    [HideInInspector] public bool _GAMEOVER_UI;
+
 
     private void Start()
     {
@@ -35,6 +44,8 @@ public class UIManager : MonoBehaviour
         _UPGRADE_UI = false;
         _STATUS_UI = false;
         _GOLD_UI = true;
+        _LIFE_UI = true;
+        _GAMEOVER_UI = false;
     }
 
     private void Update()
@@ -43,6 +54,8 @@ public class UIManager : MonoBehaviour
         UPGRADE_UI.SetActive(_UPGRADE_UI);
         STATUS_UI.SetActive(_STATUS_UI);
         GOLD_UI.SetActive(_GOLD_UI);
+        LIFE_UI.SetActive(_LIFE_UI);
+        GAMEOVER_UI.SetActive(_GAMEOVER_UI);
     }
 
     public void Statusupdate(string name, int Level, float AttackPower, float UpAttackPower, float AttackSpeed, float UpAttackSpeed, float Distance, float UpDistance, float UpgradeMoney)
@@ -61,12 +74,23 @@ public class UIManager : MonoBehaviour
     public void MoneyPlus(int Money)
     {
         InMoney += Money;
-        Moneyupdate(InMoney);
+        MoneyUpdate(InMoney);
     }
-    public void Moneyupdate(int Money)
+    public void MoneyUpdate(int Money)
     {
         InMoney = Money;
         GoldUI.text = $"GOLD : {InMoney}";
     }
     
+    private int InLife = 0;
+    public void LifeUpdate(int Plus)
+    {
+        InLife += Plus;
+        LifeUI.text = $" ♥ {InLife}";
+    }
+
+    public int GetLife()
+    {
+        return InLife;
+    }
 }

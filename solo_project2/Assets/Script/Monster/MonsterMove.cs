@@ -7,7 +7,6 @@ using UnityEngine.AI;
 public class MonsterMove : MonoBehaviour
 {
     NavMeshAgent agent;
-
     [SerializeField] private GameObject target;
 
     private void Awake()

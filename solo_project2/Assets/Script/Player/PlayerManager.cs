@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 public class PlayerManager : MonoBehaviour
 {
     private CharacterController PLAYER;
+    public GameObject UI;
+    private UIManager UI_Manager;
+
     private SWORD _sword;
     private Animator ANI;
 
@@ -20,19 +23,25 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector] public float attackSpeed;
     [HideInInspector] public float attackPower;
     private int attackMotion;
-
-    public bool WaterC = false;
+    public int Life;
 
     private void Start()
     {
         PLAYER = GetComponent<CharacterController>();
+        UI_Manager = UI.GetComponent<UIManager>();
         ANI = GetComponent<Animator>();
         _sword = Sword.GetComponent<SWORD>();
+
+        UI_Manager.LifeUpdate(Life);
         attackMotion = 0;
     }
 
     private void Update()
     {
+        if (UI_Manager.GetLife() <= 0)
+        {
+            playerDie();
+        }
         PlayerMove();
         PlayerAttack();
     }
@@ -84,6 +93,13 @@ public class PlayerManager : MonoBehaviour
             ANI.SetTrigger("ATTACK");
             ANI.SetInteger("AttackMotion", attackMotion);
         }
+    }
+
+    private void playerDie()
+    {
+        gameObject.SetActive(false);
+        UI_Manager._GAMEOVER_UI = true;
+        Time.timeScale = 0;
     }
 
     private void OnTriggerEnter(Collider other)

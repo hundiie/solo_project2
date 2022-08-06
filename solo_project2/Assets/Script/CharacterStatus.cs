@@ -16,8 +16,6 @@ public class CharacterStatus : MonoBehaviour
     [SerializeField] private GameObject SliderHpObject;
     private Slider SliderHP;
 
-    
-
     public ObjectType CharacterType;
     [Header("Monster")]
     public int DropMoney;
@@ -191,16 +189,19 @@ public class CharacterStatus : MonoBehaviour
 
     public void colorChange(Color _Coler)
     {
-        int Ccount = gameObject.transform.childCount;
-        GameObject[] Child = new GameObject[Ccount];
+        if (gameObject != null) 
+        {
+            int Ccount = gameObject.transform.childCount;
+            GameObject[] Child = new GameObject[Ccount];
 
-        for (int i = 0; i < Ccount - 1; i++)
-        {
-            Child[i] = transform.GetChild(i).gameObject;
-        }
-        for (int i = 0; i < Ccount - 1; i++)
-        {
-            Child[i].GetComponent<Renderer>().material.color = _Coler;
+            for (int i = 0; i < Ccount - 1; i++)
+            {
+                Child[i] = transform.GetChild(i).gameObject;
+            }
+            for (int i = 0; i < Ccount - 1; i++)
+            {
+                Child[i].GetComponent<Renderer>().material.color = _Coler;
+            }
         }
     }
 

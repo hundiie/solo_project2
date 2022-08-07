@@ -69,6 +69,7 @@ public class CharacterStatus : MonoBehaviour
         HpPercent = HP / (MaxHP / 100);
         SliderHP = SliderHpObject.transform.GetChild(0).GetComponent<Slider>();
         _Animator = GetComponent<Animator>();
+        
         BasicSpeed = Speed;
 
         Hit = false;
@@ -90,7 +91,7 @@ public class CharacterStatus : MonoBehaviour
                 break;
             case ObjectType.Monster:
                 {
-                    
+                    GetComponent<MonsterState>().DropMoney = DropMoney;
                     Nav = GetComponent<NavMeshAgent>();
                     Nav.speed = Speed;
                     _MonsterState = GetComponent<MonsterState>();

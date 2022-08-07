@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -18,8 +18,8 @@ public class PlayerManager : MonoBehaviour
 
     [HideInInspector] public float PlayerSpeed;
 
+    bool Jump;
     public float JumpSpeed;// üũ
-
     [HideInInspector] public float attackSpeed;
     [HideInInspector] public float attackPower;
     private int attackMotion;
@@ -34,6 +34,7 @@ public class PlayerManager : MonoBehaviour
 
         UI_Manager.LifeUpdate(Life);
         attackMotion = 0;
+        Jump = false;
     }
 
     private void Update()
@@ -61,9 +62,31 @@ public class PlayerManager : MonoBehaviour
             ANI.SetBool("MOVE", false);
         }
 
-        Vector3 _Move = new(MoveHorizontal, 0, MoveVertical);
+        if (Input.GetKey(KeyCode.Space) && !Jump)
+        {
+            StartCoroutine(Playerjump());
+        }
+
+        Vector3 _Move = _Move = new(MoveHorizontal, 0, MoveVertical);
+
+        if (Jump)
+        {
+            _Move = new(MoveHorizontal, JumpSpeed, MoveVertical);
+
+        }
+
         PLAYER.Move(transform.TransformDirection(_Move) * Time.deltaTime * PlayerSpeed);
     }
+
+    IEnumerator Playerjump()
+    {
+        Jump = true;
+        ANI.SetTrigger("Jumpp");
+        ANI.SetBool("Jump",true);
+        yield return new WaitForSeconds(1f);
+        Jump = false;
+    }
+
 
     private float attackTime;
     private void PlayerAttack()
@@ -104,9 +127,27 @@ public class PlayerManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.tag == "Tile")
+        {
+            if (ANI.GetBool("Jump") == true)
+            {
+                ANI.SetBool("Jump", false);
+            } 
+
+        }
+
         if (other.tag == "Water")
         {
-            SceneManager.LoadScene(0);
+            Vector3 _Start = -transform.position;
+            PLAYER.Move(_Start);
+        }
+
+        if (other.tag == "Coin")
+        {
+            Destroy(other.gameObject);
+            int Money = other.GetComponent<Coin>().PlusMoney;
+            GetComponent<PlayerCreate>().Money += Money;
+            GetComponent<PlayerCreate>().UI.GetComponent<UIManager>().MoneyPlus(Money);
         }
     }
 }

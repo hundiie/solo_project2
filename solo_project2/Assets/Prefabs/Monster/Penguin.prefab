@@ -170,7 +170,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 7357053360494151731}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.6
+  m_Radius: 0.15
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -221,7 +221,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ecf62449471938479129f107d0d2c63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Coin: {fileID: 3368600099965211776, guid: 19bb63288ad807443a5635eeb6ccd3f7, type: 3}
   Die: 0
+  DropMoney: 0
 --- !u!114 &100373879829154940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,14 +236,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6601064f86f603842a9bc6153b8eb926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UI: {fileID: 6582203943102847325, guid: 8872b5044326a0f49ade775a829b6e65, type: 3}
   SliderHpObject: {fileID: 3403119887542974083}
   CharacterType: 1
-  DropMoney: 10
-  MaxHP: 30
+  DropMoney: 15
+  MaxHP: 100
   HP: 0
   HpPercent: 0
-  Speed: 5
+  Speed: 3
   BasicSpeed: 0
   AttackPower: 0
   AttackSpeed: 0

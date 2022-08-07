@@ -9,7 +9,9 @@ public class MonsterState : MonoBehaviour
     private NavMeshAgent agent;
     private CharacterStatus status;
     private Bullet _Bullet;
-    public bool Die;
+    public GameObject Coin;
+    [HideInInspector] public bool Die;
+    [HideInInspector] public int DropMoney;
 
     void Start()
     {
@@ -25,10 +27,17 @@ public class MonsterState : MonoBehaviour
             MonsterDie();
         }
     }
-
+    private bool InCoin = false;
     public void MonsterDie()
     {
         agent.speed = 0;
+        if (!InCoin)
+        {
+            float floatCoin = (float)DropMoney;
+            GameObject CoinMoney = Instantiate(Coin, transform.position += new Vector3(0, 0.15f + (floatCoin / 200f), 0), transform.rotation = Quaternion.Euler(0, 0, 90));
+            CoinMoney.GetComponent<Coin>().PlusMoney = DropMoney;
+            InCoin = true;
+        }
         Destroy(gameObject,0.2f);
     }
 

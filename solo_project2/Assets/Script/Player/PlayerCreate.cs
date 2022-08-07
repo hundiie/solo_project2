@@ -88,9 +88,6 @@ public class PlayerCreate : MonoBehaviour
         {
             Tower towerData = SaveObject.GetComponent<TileManager>().TowerObject.GetComponent<Tower>();
 
-            float _attackPower = towerData.AttackPower + ((towerData.TowerLevel - 1) * towerData.UpgradeAttackPower);
-            float _attackSpeed = towerData.AttackSpeed - ((towerData.TowerLevel - 1) * towerData.UpgradeAttackSpeed);
-            float _attackDistance = towerData.AttackDistance + ((towerData.TowerLevel - 1) * towerData.UpgradeAttackDistance);
             string _towerName = "";
             switch (towerData.TOWER)
             {
@@ -110,9 +107,14 @@ public class PlayerCreate : MonoBehaviour
                     break;
             }
 
+            float _attackPower = towerData.AttackPower + ((towerData.TowerLevel - 1) * towerData.UpgradeAttackPower);
+            float _attackSpeed = towerData.AttackSpeed - ((towerData.TowerLevel - 1) * towerData.UpgradeAttackSpeed);
+            float _attackDistance = towerData.AttackDistance + ((towerData.TowerLevel - 1) * towerData.UpgradeAttackDistance);
+            int _SellMoney = (towerData.Money + (towerData.TowerLevel * towerData.UpgradeMoney)) / 2;
 
             UI_Manager._STATUS_UI = true;
-            UI_Manager.Statusupdate(_towerName, towerData.TowerLevel, _attackPower, towerData.UpgradeAttackPower, _attackSpeed, towerData.UpgradeAttackSpeed, _attackDistance, towerData.UpgradeAttackDistance, towerData.UpgradeMoney);
+
+            UI_Manager.Statusupdate(_towerName, towerData.TowerLevel, _attackPower, towerData.UpgradeAttackPower, _attackSpeed, towerData.UpgradeAttackSpeed, _attackDistance, towerData.UpgradeAttackDistance, towerData.UpgradeMoney, _SellMoney);
 
             UI_Manager._UPGRADE_UI = true;
         }
@@ -190,9 +192,10 @@ public class PlayerCreate : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.H))
             {
+                Tower obt = SaveObject.GetComponent<TileManager>().TowerObject.GetComponent<Tower>();
+                Money += (obt.Money + (obt.TowerLevel * obt.UpgradeMoney))/2;
                 Destroy(SaveObject.GetComponent<TileManager>().TowerObject);
                 SaveObject.GetComponent<TileManager>().tower = false;
-                Money += 10;
                 OutputKey_F();
             }
             if (Input.GetKeyDown(KeyCode.G) && maxLevel >TowerLevel)

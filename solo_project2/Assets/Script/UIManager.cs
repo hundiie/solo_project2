@@ -27,6 +27,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI DistanceUI;
     public TextMeshProUGUI UpDistanceUI;
     public TextMeshProUGUI UpgradeUI;
+    public TextMeshProUGUI SellUI;
 
     [Header("라이프 관련")]
     public GameObject LIFE_UI;
@@ -58,7 +59,7 @@ public class UIManager : MonoBehaviour
         GAMEOVER_UI.SetActive(_GAMEOVER_UI);
     }
 
-    public void Statusupdate(string name, int Level, float AttackPower, float UpAttackPower, float AttackSpeed, float UpAttackSpeed, float Distance, float UpDistance, float UpgradeMoney)
+    public void Statusupdate(string name, int Level, float AttackPower, float UpAttackPower, float AttackSpeed, float UpAttackSpeed, float Distance, float UpDistance, float UpgradeMoney, int Sell)
     {
         NameUI.text = $"{name}";
         LevelUI.text = $"Level {Level}";
@@ -69,6 +70,7 @@ public class UIManager : MonoBehaviour
         DistanceUI.text = $"{string.Format("{0:0.#}", Distance)}";
         UpDistanceUI.text = $"+ {string.Format("{0:0.#}", UpDistance)}";
         UpgradeUI.text = $"{string.Format("{0:0.#}", UpgradeMoney)}";
+        SellUI.text = $"{string.Format("{0:0.#}", Sell)}";
     }
     private int InMoney;
     public void MoneyPlus(int Money)

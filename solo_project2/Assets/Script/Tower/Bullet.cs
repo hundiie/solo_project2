@@ -33,7 +33,6 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         transform.Translate(new Vector3(0, 0.07f, 1) * Time.deltaTime * BulletSpeed);
-
         MyDistance = Vector3.Distance(transform.position, TowerPosition);
         if (MyDistance > AttackDistance + 3f)
         {

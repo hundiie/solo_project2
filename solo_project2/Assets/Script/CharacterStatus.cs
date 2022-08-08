@@ -105,9 +105,8 @@ public class CharacterStatus : MonoBehaviour
     private void Update()
     {
         HpPercent = HP / (MaxHP / 100);
-        
         hpp.transform.LookAt(cameraToLookAt.transform);
-        
+      
         switch (CharacterType)
         {
             case ObjectType.Player:

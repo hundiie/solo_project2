@@ -97,7 +97,7 @@ public class StageManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            StageStart(nowStage);
+            StartCoroutine(StageStart(nowStage));
             nowStage++;
         }
     }
@@ -110,7 +110,7 @@ public class StageManager : MonoBehaviour
         }
     }
 
-    void StageStart(int GoStageNumber)
+    IEnumerator StageStart(int GoStageNumber)
     {
         int MonsterCount = 0;
         int spawnerNumber = 0;
@@ -121,21 +121,13 @@ public class StageManager : MonoBehaviour
                 spawnerNumber++;
             }
         }
-        float SpawnTimer = 0f;
         while (MonsterCount <= 30)
         {
-            SpawnTimer += Time.deltaTime;
-            Debug.Log($"SpawnTimer : {SpawnTimer}");
-            Debug.Log($"SpawnTime : {SpawnTime}");
-            if (SpawnTimer >= SpawnTime)
-            {
-                SpawnTimer = 0f;
-                int RandomNum = Random.Range(0, spawnerNumber);
-                Debug.Log(RandomNum);
-                Instantiate(Monster[Stage[GoStageNumber,MonsterCount]], _MapMake.SpawnerObject[RandomNum].transform.position, _MapMake.SpawnerObject[RandomNum].transform.rotation);
+            int RandomNum = Random.Range(0, spawnerNumber);
+            Instantiate(Monster[Stage[GoStageNumber, MonsterCount]], _MapMake.SpawnerObject[RandomNum].transform.position, _MapMake.SpawnerObject[RandomNum].transform.rotation);
 
-                MonsterCount++;
-            }
+            MonsterCount++;
+            yield return new WaitForSeconds(SpawnTime);
         }
     }
 

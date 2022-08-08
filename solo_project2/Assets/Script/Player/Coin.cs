@@ -17,7 +17,7 @@ public class Coin : MonoBehaviour
     private float CoinMotion = 0;
     void Update()
     {
-        transform.Rotate(5, 0, 0);
+        transform.Rotate(300 * Time.deltaTime, 0, 0);
         
         CoinMotion += Time.deltaTime;
 

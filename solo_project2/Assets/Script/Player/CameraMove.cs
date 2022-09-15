@@ -38,7 +38,7 @@ public class CameraMove : MonoBehaviour
         Debug.DrawRay(transform.position, transform.forward * 100f, Color.red);
         
         Ray ray = Camera.main.ScreenPointToRay(_CameraCenter);
-        RaycastHit[] hit = Physics.RaycastAll(Camera.main.transform.position, Camera.main.transform.forward);
+        RaycastHit[] hit = Physics.RaycastAll(Camera.main.transform.position, Camera.main.transform.forward,1);
 
         for (int i = 0; i < hit.Length; i++)
         {
